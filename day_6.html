@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="js/day_6.js"></script>
+	<script type="text/javascript">
+function Animal(name)
+{ 
+this.name = name; 
+this.showName = function()
+	{ 
+		console.log(this.name); 
+	} 
+} 
+
+function Pig(name)
+{ 
+Animal.call(this, name); 
+} 
+
+// Pig.prototype = new Animal();
+// Pig.prototype.constructor = Pig;
+var pig = new Pig("Black Pig"); 
+pig.showName();
+
+function Dog(name)
+{
+	Animal.call(this,name);
+}
+
+var dog = new Dog("White Dog");
+dog.showName();
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
