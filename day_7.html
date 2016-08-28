@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Js计时器</title>
+	<script type="text/javascript">
+	var timer = 
+	{
+		pauseDate:0,
+		startDate:0,
+		time:0,
+		state:0,
+		start:start,
+		pause:pause,
+		reset:reset,
+		getDuration:getDuration,
+	};
+
+	function start()
+	{
+			var date = new Date();
+			this.state = 1;
+			this.startDate = date.getTime();
+			// then.setTime(then.getTime() - this.time);
+			console.log('开始：'+this.startDate);
+	}
+
+	function pause()
+	{
+		if(this.state == 1)
+		{
+			this.state = 2;
+			var date = new Date();
+			this.pauseDate = date.getTime();
+			this.time += (this.pauseDate - this.startDate);
+			console.log('暂停：'+this.pauseDate);
+		}
+		else
+		{
+			console.log('计时未开始');
+		}
+	}
+
+	function reset()
+	{
+		this.state = 0;
+		this.time = 0;
+		this.startDate = 0;
+		this.pauseDate = 0;
+		console.log('重新计时');
+	}
+
+	function getDuration()
+	{
+		// var clock = 0;
+		if(this.state == 1)
+		{
+			var date = new Date();
+			lastDate = date.getTime();
+			this.time += (lastDate - this.startDate);
+			console.log('结束：'+lastDate);
+			console.log('start之后直接结束，经历时间为' + this.time + '毫秒');
+			
+		}
+		else if(this.state == 0)
+		{
+			// date = new Date();
+			// lastDate = date.getTime();
+			// this.time += (lastDate - this.startDate);
+			console.log('计时未开始');
+		}
+		else if(this.state == 2)
+		{
+			console.log('结束：'+this.pauseDate);
+			console.log('start之后先pause再结束，间隔时间为' + this.time + '毫秒');
+		}
+		this.state=0;
+		this.startDate=0;
+		this.time=0;
+	}
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
