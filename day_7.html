@@ -24,14 +24,15 @@
 			this.state = 1;
 			this.startDate = date.getTime();
 			// then.setTime(then.getTime() - this.time);
-			console.log('开始：'+this.startDate);
 		}
 		else
 		{
 			this.state = 1;
-			this.startDate = this.pauseDate;
-			console.log('开始：'+this.startDate);
+			console.log('暂停开始：'+this.pauseDate);
+			var date = new Date();
+			this.startDate = date.getTime();
 		}
+		console.log('真正开始：'+this.startDate);
 	}
 
 	function pause()
@@ -42,7 +43,7 @@
 			var date = new Date();
 			this.pauseDate = date.getTime();
 			this.time += (this.pauseDate - this.startDate);
-			console.log('暂停：'+this.pauseDate);
+			console.log('计时暂停：'+this.pauseDate);
 		}
 		else
 		{
