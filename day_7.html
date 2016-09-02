@@ -15,7 +15,7 @@
 		reset:reset,
 		getDuration:getDuration,
 	};
-
+// **********************************************************
 	function start()
 	{
 		if(this.state == 0)
@@ -34,7 +34,7 @@
 		}
 		console.log('真正开始：'+this.startDate);
 	}
-
+// **********************************************************
 	function pause()
 	{
 		if(this.state == 1)
@@ -50,7 +50,7 @@
 			console.log('计时未开始');
 		}
 	}
-
+// **********************************************************
 	function reset()
 	{
 		this.state = 0;
@@ -59,7 +59,7 @@
 		this.pauseDate = 0;
 		console.log('重新计时');
 	}
-
+// **********************************************************
 	function getDuration()
 	{
 		// var clock = 0;
@@ -86,8 +86,123 @@
 		}
 		this.state=0;
 		this.startDate=0;
+		this.pauseDate=0;
 		this.time=0;
 	}
+// **********************************************************
+	function test(callback,message,bool)
+	{
+		timer.start();
+		if(callback(message))
+		{
+			console.log(message+':测试通过');
+		}
+		else
+		{
+			console.log(message+':测试未通过');
+		}
+		if(bool)
+		{
+			timer.getDuration();
+		}
+	}
+
+// ***********************************************************
+	var utils =
+	{
+		uniqueArray :  uniqueArray,
+		// 数组去重
+		isString    :  isString,
+		// 判断是否字符串
+		isNumber    :  isNumber,
+		// // 判断是否数字
+		isObject    :  isObject,
+		// // 判断是否对象
+		isArray     :  isArray, 
+		// // 判断是否数组
+		isFunction  :  isFunction,
+		// 判断是否函数
+	}
+// **********************************************************
+	// 是否字符串
+	function isString(message)
+	{
+		if(typeof message ==='string')
+		{return 1;}
+		else
+		{return 0}
+	}
+// **********************************************************
+	// 是否数字
+	function isNumber(message)
+	{
+		if(typeof message ==='number')
+		{return 1;}
+		else
+		{return 0}
+	}
+// **********************************************************
+	// 是否对象
+	function isObject(message)
+	{
+		if(typeof message ==='object')
+		{return 1;}
+		else
+		{return 0}
+	}
+// **********************************************************
+	// 是否数组
+	function isArray(message)
+	{
+		message instanceof Array;
+		if(message.constructor == Array)
+		{return 1;}
+		else
+		{return 0}
+	}
+// **********************************************************
+	// 是否函数
+	function isFunction(message)
+	{
+		if(typeof message == 'function')
+		{return 1;}
+		else
+		{return 0}
+	}
+// **********************************************************
+	// 数组去重
+	var uniqueArray = function(message)
+	{
+		if(message.constructor == Array)
+		{
+		// message.sort();
+		// var lq=[];
+		// lq = message;
+		// var re=[lq[0]];
+		// for(var i=1;i<lq.length;i++)
+		// {
+		// 	if(lq[i]!==re[re.length-1])
+		// 	{
+		// 		re.push(lq[i]);
+		// 	}
+		// }
+		// console.log(re);
+			var n={},r=[];
+			for(var i=0;i<message.length;i++)
+			{
+				if(!n[message[i]])
+				{
+					n[message[i]]=true;
+					r.push(message[i]);
+				}
+			}
+			console.log(r);
+			return 1;
+		}
+		else
+		{return 0;}
+	}
+// 结束*********************************************************
 	</script>
 </head>
 <body>
