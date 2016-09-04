@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>JS计时器</title>
+	<script type="text/javascript">
+	var timer =
+	{
+		state:0,
+		pauseDate:0,
+		startDate:0,
+		time:0,
+		start:start,
+		pause:pause,
+		reset:reset,
+		getDuration:getDuration,
+	}
+
+	function start()
+	{
+		this.state = 1;
+		var date = new Date();
+		this.pauseDate = date.getTime();
+		this.startDate = this.pauseDate;
+		console.log('开始'+this.pauseDate);
+		this.pauseDate = 0;
+		if(this.state != 0)
+		{
+			console.log('正在计时')；
+		}
+	}
+
+	function pause()
+	{
+		var date = new Date();
+		this.pauseDate = date.getTime();
+
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	</script>
+
+</head>
+<body>
+	
+</body>
+</html>
