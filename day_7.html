@@ -15,42 +15,42 @@
 		reset:reset,
 		getDuration:getDuration,
 	};
-// **********************************************************
+
 	function start()
 	{
-		if(this.state == 0)
+		if(this.state==0)
 		{
 			var date = new Date();
 			this.state = 1;
 			this.startDate = date.getTime();
-			// then.setTime(then.getTime() - this.time);
+			
 		}
 		else
 		{
 			this.state = 1;
-			console.log('暂停开始：'+this.pauseDate);
-			var date = new Date();
+			console.log('开始lllll：'+this.pauseDate);
+			var date = new Date;
 			this.startDate = date.getTime();
 		}
 		console.log('真正开始：'+this.startDate);
 	}
-// **********************************************************
+
 	function pause()
 	{
-		if(this.state == 1)
+		if(this.state==1)
 		{
 			this.state = 2;
 			var date = new Date();
 			this.pauseDate = date.getTime();
 			this.time += (this.pauseDate - this.startDate);
-			console.log('计时暂停：'+this.pauseDate);
+			console.log('暂停：'+this.pauseDate);
 		}
 		else
 		{
 			console.log('计时未开始');
 		}
 	}
-// **********************************************************
+
 	function reset()
 	{
 		this.state = 0;
@@ -59,11 +59,10 @@
 		this.pauseDate = 0;
 		console.log('重新计时');
 	}
-// **********************************************************
+
 	function getDuration()
 	{
-		// var clock = 0;
-		if(this.state == 1)
+		if(this.state==1)
 		{
 			var date = new Date();
 			lastDate = date.getTime();
@@ -72,14 +71,11 @@
 			console.log('start之后直接结束，经历时间为' + this.time + '毫秒');
 			
 		}
-		else if(this.state == 0)
+		else if(this.state==0)
 		{
-			// date = new Date();
-			// lastDate = date.getTime();
-			// this.time += (lastDate - this.startDate);
 			console.log('计时未开始');
 		}
-		else if(this.state == 2)
+		else if(this.state==2)
 		{
 			console.log('结束：'+this.pauseDate);
 			console.log('start之后先pause再结束，间隔时间为' + this.time + '毫秒');
@@ -93,7 +89,7 @@
 	function test(callback,message,bool)
 	{
 		timer.start();
-		if(callback(message))
+		if(callback===message)
 		{
 			console.log(message+':测试通过');
 		}
@@ -123,61 +119,64 @@
 		isFunction  :  isFunction,
 		// 判断是否函数
 	}
-// **********************************************************
+
+
+	function type(obj) 
+	{
+		// console.dir(obj);
+  		if(!obj) 
+  		{
+    		return Object.prototype.toString.call(obj).slice(8, -1);
+  		}
+  		return obj.constructor.toString().match(/function\s*([^(]*)/)[1];
+	}
+
 	// 是否字符串
-	function isString(message)
+	function isString(obj)
 	{
-		if(typeof message ==='string')
-		{return 1;}
-		else
-		{return 0}
+		if(type(obj) ==='String')
+			return obj;
+		// else
+		// 	return false;
 	}
-// **********************************************************
 	// 是否数字
-	function isNumber(message)
+	function isNumber(obj)
 	{
-		if(typeof message ==='number')
-		{return 1;}
-		else
-		{return 0}
+		if(type(obj) ==='Number')
+			return obj;
+		// else
+		// 	return false;
 	}
-// **********************************************************
 	// 是否对象
-	function isObject(message)
+	function isObject(obj)
 	{
-		if(typeof message ==='object')
-		{return 1;}
-		else
-		{return 0}
+		if(type(obj) ==='Object')
+			return obj;
+		// else
+		// 	return false;
 	}
-// **********************************************************
 	// 是否数组
-	function isArray(message)
+	function isArray(obj)
 	{
-		message instanceof Array;
-		if(message.constructor == Array)
-		{return 1;}
-		else
-		{return 0}
+		if(type(obj)==='Array')
+			return obj;
+		// else
+		// 	return false;
 	}
-// **********************************************************
 	// 是否函数
-	function isFunction(message)
+	function isFunction(obj)
 	{
-		if(typeof message == 'function')
-		{return 1;}
-		else
-		{return 0}
+		if(type(obj) === 'Function')
+			return obj;
+	// 	else
+	// 		return false;
 	}
-// **********************************************************
 	// 数组去重
-	var uniqueArray = function(message)
+	function uniqueArray(obj)
 	{
-		if(message.constructor == Array)
-		{
-		// message.sort();
+		// obj.sort();
 		// var lq=[];
-		// lq = message;
+		// lq = obj;
 		// var re=[lq[0]];
 		// for(var i=1;i<lq.length;i++)
 		// {
@@ -188,21 +187,17 @@
 		// }
 		// console.log(re);
 			var n={},r=[];
-			for(var i=0;i<message.length;i++)
+			for(var i=0;i<obj.length;i++)
 			{
-				if(!n[message[i]])
+				if(!n[obj[i]])
 				{
-					n[message[i]]=true;
-					r.push(message[i]);
+					n[obj[i]]=true;
+					r.push(obj[i]);
 				}
 			}
-			console.log(r);
-			return 1;
-		}
-		else
-		{return 0;}
+			return r;
 	}
-// 结束*********************************************************
+
 	</script>
 </head>
 <body>
