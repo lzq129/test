@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>new 计时器</title>
+	<script type="text/javascript">
+	//定义一个计时器类
+	var timer = 
+	{
+		state:0,		//计时器状态变量
+		start:start,	//开始计时函数
+		pause:pause,	//暂停计时函数
+		stop:stop,		//停止计时函数
+		reset:reset,	//重新计时函数
+		time:0,			//计时结果
+		startDate:0,	//计时器开始时间
+	};
+	//开始计时函数
+	function start()
+	{
+		var date = new Date();
+		this.state = 0;
+		this.startDate = date.getTime();
+		return this.startDate;
+	}
+	//暂停计时函数
+	function pause()
+	{
+		if(this.state==0)
+		{
+			var date = new Date();
+			this.state = 1;
+			this.pauseDate = date.getTime();
+			this.time += (this.pauseDate - this.startDate);
+			return this.pauseDate;
+		}
+		else
+		{
+			return this.pauseDate;
+		}
+	}
+	// 重新计时函数
+	function reset()
+	{
+		this.state = 0;
+		this.time = 0;
+		this.startDate = 0;
+	}
+	// 停止计时函数
+	function stop()
+	{
+			this.pause();
+			console.log(this.time);
+			this.reset();
+	}
+	
+	
+// *************************************************
+	// 测试函数
+	function test(callback,message,bool)
+	{
+		timer.start();
+		if(callback===message)
+		{
+			console.log(message+':测试通过');
+		}
+		else
+		{
+			console.log(message+':测试未通过');
+		}
+		if(bool)
+		{
+			timer.stop();
+		}
+	}
+// **************************************************
+	//测试工具集函数
+	var utils =
+	{
+		uniqueArray :  uniqueArray,
+		// 数组去重
+		isString    :  isString,
+		// 判断是否字符串
+		isNumber    :  isNumber,
+		// // 判断是否数字
+		isObject    :  isObject,
+		// // 判断是否对象
+		isArray     :  isArray, 
+		// // 判断是否数组
+		isFunction  :  isFunction,
+		// 判断是否函数
+	}
+
+
+	function type(obj) 
+	{
+		// console.dir(obj);
+  		if(!obj) 
+  		{
+    		return Object.prototype.toString.call(obj).slice(8, -1);
+  		}
+  		return obj.constructor.toString().match(/function\s*([^(]*)/)[1];
+	}
+
+
+
+
+	// 是否字符串
+	function isString(obj)
+	{
+		if(type(obj) ==='String')
+			return obj;
+		// else
+		// 	return false;
+	}
+	// 是否数字
+	function isNumber(obj)
+	{
+		if(type(obj) ==='Number')
+			return obj;
+		// else
+		// 	return false;
+	}
+	// 是否对象
+	function isObject(obj)
+	{
+		if(type(obj) ==='Object')
+			return obj;
+		// else
+		// 	return false;
+	}
+	// 是否数组
+	function isArray(obj)
+	{
+		if(type(obj)==='Array')
+			return obj;
+		// else
+		// 	return false;
+	}
+	// 是否函数
+	function isFunction(obj)
+	{
+		if(type(obj) === 'Function')
+			return obj;
+	// 	else
+	// 		return false;
+	}
+
+
+	// 数组去重
+	function uniqueArray(obj)
+	{
+		// obj.sort();
+		// var lq=[];
+		// lq = obj;
+		// var re=[lq[0]];
+		// for(var i=1;i<lq.length;i++)
+		// {
+		// 	if(lq[i]!==re[re.length-1])
+		// 	{
+		// 		re.push(lq[i]);
+		// 	}
+		// }
+		// console.log(re);
+			var n={},r=[];
+			for(var i=0;i<obj.length;i++)
+			{
+				if(!n[obj[i]])
+				{
+					n[obj[i]]=true;
+					r.push(obj[i]);
+				}
+			}
+			return r;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
