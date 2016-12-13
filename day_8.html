@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>封装</title>
+	<style type="text/css">
+	li
+	{
+		background: #fab;
+		margin: 20px;
+	}
+	</style>
+	<script type="text/javascript">
+window.onload=function()
+{
+//delegate功能函数
+	function delegate(tag,ele,callback)
+	{
+		tag.addEventListener("click",function(){
+			event = event || window.event;
+			var target = event.target || event.srcElement;
+			var li = tag.getElementsByTagName('li');
+			if(target.tagName == ele.toUpperCase())
+				callback(event,li);
+		},false);
+
+	}
+//按钮功能函数
+	function btn(id,callback)
+	{
+		id.addEventListener("click",callback);
+	}
+//执行函数
+	del_ff($("#list"));
+	btn($("#btn"),renderList);
+	btn($("#move"),reMove);
+	delegate($("#list"),"li",clickListener);
+}
+	var num = 4;
+//删除空格
+	function del_ff(elem)
+	{
+		var elem_child = elem.childNodes;
+		for(var i=0; i<elem_child.length;i++)
+		{
+			if(elem_child[i].nodeName == "#text" && !/\s/.test(elem_child.nodeValue))
+			{
+				elem.removeChild(elem_child[i]);
+			}
+		}
+		console.log(elem.childNodes);
+	}
+//点击弹框函数
+	function clickListener(e,ele)
+	{
+		var e = e || window.event, target = e.target || e.srcElement;
+        for(var s in ele)
+        {
+            if(target == ele[s])
+            {
+                s = parseInt(s)+1;
+                alert(s);
+                break;
+            }
+        }
+	}
+//$函数
+	function $(selector){
+            if (selector.substr(0,1) == "#") {
+                var getDom = document.getElementById(selector.substring(1));
+                return getDom;
+            } else{
+                console.log("This is not a id");
+            }
+        }  
+//添加按钮函数
+	function renderList() 
+    {            //点击改变li项内容
+         // $("#list").innerHTML = '<li>new item</li>';
+         num++;
+         var oLi = document.createElement('li');
+         //console.log(oLi)
+         oLi.innerHTML = 11111*num;
+         $("#list").appendChild(oLi);
+         //console.log($("#list").childNodes)
+    } 
+//删除按钮函数
+	function reMove()
+    {
+        if(num>0)
+        {
+            $("#list").removeChild($("#list").childNodes[num-1]);
+            num--;
+        }
+        else
+            alert("没有可删除li");
+    }
+
+	</script>
+</head>
+<body>
+	<ul id="list">
+		<li>11111</li>
+		<li>22222</li>
+		<li>33333</li>
+		<li>44444</li>
+	</ul>
+	<button id="btn">change</button>
+    <button id="move">remove</button>
+</body>
+</html>
