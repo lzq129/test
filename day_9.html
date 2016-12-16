@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>指南针</title>
+  <style type="text/css">
+  html
+  {
+    font-size:75px;
+  }
+  #a
+  {
+    width: 2rem;
+    height:2rem;
+    margin: 0.1rem auto;
+  }
+  .a
+  {
+    float:left;
+    width:45%;
+    height:200px;
+    margin:0 20px;
+    border:1px solid #F00;
+    background:#fab;
+  }
+  img
+  {
+    width:2rem;
+    height:2rem;
+    transform:rotate(0);
+  }
+  </style>
+  <script type="text/javascript">
+
+  if(window.DeviceOrientationEvent)
+  {
+    window.addEventListener('deviceorientation',DeviceOrientationHandler,false);
+  }else
+  {
+    alert("您的浏览器不支持DeviceOrientation");
+  }
+
+
+  function DeviceOrientationHandler(event)
+  {
+    var rotate=document.getElementsByTagName('img')[0];
+    alpha = event.alpha; //Z轴方向
+    var beta = event.beta,//X轴方向
+    gamma = event.gamma;//Y轴方向
+
+    if (alpha != null) 
+    {
+        rotate.style.webkitTransform = "rotate(" + alpha + "deg)";//箭头旋转
+    }
+  }
+  </script>
+</head>
+<body>
+  <div id="a">
+    <img id="b" src="./image/guide.jpg">
+  </div>
+  <div class="a"></div>
+  <div class="a"></div>
+</body>
+</html>
